@@ -2,6 +2,22 @@
 
 本项目遵循 [Semantic Versioning](https://semver.org/)。
 
+## [0.3.0] - 2026-11-03
+
+- 适配 OMP 18.16.0 设置体系（从 18.14.1 升级至 18.16.0）：
+  - 翻译全量覆盖：覆盖率由 433 项扩增至 438 项完整 UI 设置（438/438，100% P0 覆盖），0 部分，0 未翻译，123 项无 UI 配置 0 异常，上游 Schema 漂移完全归零。
+  - 新增 5 项设置项汉化：
+    - 输入与会话：`/btw` 引导注入 (`btw.inject`)、预测候选项 (`composer.predictionAlternatives`)
+    - 记忆：Hindsight 全局作用域 (`hindsight.globalScope`)
+    - 任务与子代理：单次调用模型 (`task.perCallModel`)、单次调用模型允许列表 (`task.perCallModelAllow`)
+  - 同步 3 项已有设置文案漂移：
+    - `tier.openai`：`ultrafast` 选项补充 Codex 与中转（relay）模型
+    - `async.widgets`：补充后台任务输出推导、长 shell 命令一行用途说明，以及每个任务一份配置至多一条说明的细节
+    - `task.maxEffort`：对齐单次调用模型、显式 `:level` 钳制、继承与冷启动恢复语义
+  - 版本号与测试维护：正式升级版本号至 0.3.0，测试版本断言与 OMP 18.16.0 对齐，全部测试与自动化校验套件 100% 通过
+- 开发依赖：`@oh-my-pi/pi-coding-agent` devDependency 升级至 `18.16.0`
+- 工具链：`tsconfig.json` 增加 `lib: ["ES2024", "DOM"]` 与 `types: ["node", "bun"]`，与同系列插件保持一致
+
 ## [0.2.0] - 2026-10-31
 
 - 适配 OMP 18.14.1 最新设置体系（从 18.8.7 跨越升级至 18.14.1）：

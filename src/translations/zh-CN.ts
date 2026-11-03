@@ -2,7 +2,7 @@ import type { LocalePack } from "./types";
 
 export const zhCN = {
   "locale": "zh-CN",
-  "sourceOmpVersion": "18.14.1",
+  "sourceOmpVersion": "18.16.0",
   "tabs": {
     "appearance": "外观",
     "model": "模型",
@@ -1344,7 +1344,7 @@ export const zhCN = {
       }
     },
     "tier.openai": {
-      "sourceHash": "02b486b4e7c98a2fbb784ec5e8d578036eacceabd47bc83daeb981ebf953eb44",
+      "sourceHash": "0879d5736b87d113f9702ca9034b53df6b2adae6e5e580bb34cf8cfef400b4f8",
       "label": "服务层级 — OpenAI",
       "description": "OpenAI / OpenAI-Codex 请求以及通过 OpenRouter 路由的 OpenAI 系列模型所用的处理层级（`none` = 省略），以 `service_tier` 发送",
       "options": {
@@ -1374,7 +1374,7 @@ export const zhCN = {
         },
         "ultrafast": {
           "label": "超高速",
-          "description": "最低延迟服务；OpenAI API 预览访问或支持该特性的 Codex 模型"
+          "description": "最低延迟服务；OpenAI API 预览访问，或支持该特性的 Codex 与中转（relay）模型"
         }
       }
     },
@@ -2642,6 +2642,11 @@ export const zhCN = {
         }
       }
     },
+    "hindsight.globalScope": {
+      "sourceHash": "3c9f87dbcd8630a196def3bf5c030a696fe087209cb7ff7ff576214ce2748f04",
+      "label": "Hindsight 全局作用域",
+      "description": "允许 retain 与 learn 采用 global 作用域，存储记忆时不带项目标签，从而让所有项目都能召回；需要作用域设为 global 或按项目（带标签）"
+    },
     "hindsight.autoRecall": {
       "sourceHash": "6b54f0c711423f19c901ffa695b923b612a2469e395139332243b2e72ce2d334",
       "label": "Hindsight 自动召回",
@@ -3746,9 +3751,9 @@ export const zhCN = {
       "description": "子代理超出软请求预算时注入一次引导通知，要求其在达到 1.5 倍预算并被强制停止、交出结果前完成收尾"
     },
     "task.maxEffort": {
-      "sourceHash": "60bcb5e4c2ba6ad9559407914d34a072ed21bf640595a261e53eb2cb55c0571d",
+      "sourceHash": "d5a5e0eee8c273c49e53710f0f7138c114404fc9a3a24860db35a1b7ffcf95ce",
       "label": "单次 Spawn 最大推理强度",
-      "description": "task 工具每次 spawn 的 effort 提示所允许的最大推理强度；较低的值可防止调用方将子代理提升到此上限以上，默认值保留模型支持的完整范围",
+      "description": "task 工具的每次 spawn effort 提示或单次调用模型所允许的最大推理强度；显式的 `:level` 会被钳制到不高于此上限的最高支持强度，省略 `:level` 时继承 Agent 的思考级别并按此值封顶；冷启动恢复时会重新应用该上限；未设置、`:inherit` 与 `:off` 保持原有含义；单次调用模型必须支持不高于此上限的强度，默认值保留模型支持的完整范围",
       "options": {
         "minimal": {
           "label": "最小",
@@ -3775,6 +3780,30 @@ export const zhCN = {
           "description": "模型支持的最大推理深度"
         }
       }
+    },
+    "task.perCallModel": {
+      "sourceHash": "605f39a73761a73d17fad7130199456e2a08c8ecc829a66fee123402fbb9b892",
+      "label": "单次调用模型",
+      "description": "子代理调用是否可用单个精确的 provider/model-id[@upstream][:level] 选择器指定模型；@upstream 固定标识属于模型身份的一部分，仅聚合器支持；只接受配置已路由到的模型；项目设置只能关闭而不能开启，且永远不会批准某个模型",
+      "options": {
+        "off": {
+          "label": "关闭",
+          "description": "拒绝 task 条目以及 eval agent()/workpool() 中的 `model`"
+        },
+        "eval": {
+          "label": "仅 Eval",
+          "description": "仅在 eval agent() 与 workpool() 中接受 `model`"
+        },
+        "on": {
+          "label": "开启",
+          "description": "接受 task 条目以及 eval agent()/workpool() 中的 `model`"
+        }
+      }
+    },
+    "task.perCallModelAllow": {
+      "sourceHash": "797fe0a63e0fd588edc72396db41d987786539eeddce0cb9a64bfc240c0d8148",
+      "label": "单次调用模型允许列表",
+      "description": "精确选择器列表：`provider/model-id`，仅对固定的 OpenRouter/Vercel 路由才包含 `@upstream`（如 `openrouter/x@y`）；设置后，单次调用模型还必须出现在此列表中；为空表示配置授予的所有模型；项目列表只能进一步收窄此列表"
     },
     "task.prewalk": {
       "sourceHash": "b43f65ff12cb93bed1674fc6b717e7a8cdac07d78ad989630c2fb2483514661d",
@@ -4924,6 +4953,16 @@ export const zhCN = {
       "label": "输入框文本预测",
       "description": "轮次完成后，让当前活动模型预测下一条消息并在空白输入框中显示为虚影文本；按 Tab 或右方向键可填入但不直接发送；注意：每轮完成后会发起一次计费请求覆盖完整对话上下文（统计计入 /stats）"
     },
+    "composer.predictionAlternatives": {
+      "sourceHash": "e4010f63ef563dcd89c9595238285e85c5a98d19c05767c8995038e79d75b917",
+      "label": "预测候选项",
+      "description": "要求最多四条不同的预测而非一条，按可能性从高到低排序；虚影文本显示与草稿匹配的第一条，填入后再次按 Tab 可选择其他候选项；同一次单一请求会多返回少量输出 Token"
+    },
+    "btw.inject": {
+      "sourceHash": "1bea9a566bd1bcccd9816043ad68ab3def5d88b3eeb0e18516e23b77184b8936",
+      "label": "/btw 引导注入",
+      "description": "向 /btw 请求引导提示词时，它会在 <inject> 标签中起草一条并在答复中高亮显示；按 Alt+I（app.btw.inject）可将其发送到主会话"
+    },
     "session.worktreeScope": {
       "sourceHash": "8da1655bebff9c14c7b47e2d967e572e9f2954357b21d41555bef257b482822f",
       "label": "恢复会话工作区范围",
@@ -5057,9 +5096,9 @@ export const zhCN = {
       "description": "在打印模式（-p，--mode json）下，当本次运行的后台任务处于活动状态时，在最后一条提示词后保持运行，并在每个任务产出结果时在同一会话中开启新一轮交互；无待处理任务或结果时退出；关闭时：打印模式在提示词结束后立即退出并取消运行中的任务"
     },
     "async.widgets": {
-      "sourceHash": "5ec5f39435cb287e86bdeb5e77efb303cd65a70d7a6ef3a3acedd2caf9c2ef0b",
+      "sourceHash": "44d9a52cfcf2aa8f3c48b981bc15c934a831bf472976f1e8525e9ac6a1edf20a",
       "label": "后台任务实时小组件",
-      "description": "在等待卡片、任务胶囊和任务抽屉中为每个运行中的后台任务绘制实时小组件（图表、进度条、状态网格）；由 'widget' 模型角色（默认：'smol'）为每个任务生成配置；后续刷新无需额外的模型调用"
+      "description": "在等待卡片、任务胶囊和任务抽屉中为每个运行中的后台任务绘制实时小组件（图表、进度条、状态网格，均由任务输出推导），并为较长的 shell 命令附加一行用途说明；由 'widget' 模型角色（默认：'smol'）为每个任务生成一份配置和至多一条说明，后续刷新无需额外的模型调用"
     },
     "tools.xdevNotices": {
       "sourceHash": "98684129af4ba215a6bf4741b9a91c425c6898ed45029e90d823b15cb4e68974",

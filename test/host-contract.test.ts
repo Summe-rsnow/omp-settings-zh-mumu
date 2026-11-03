@@ -4,7 +4,7 @@ import { getHostMetadata } from "../src/host-adapter";
 describe("OMP 18 host contract", () => {
   test("required exports resolve with the expected top-level structure", () => {
     const host = getHostMetadata();
-    expect(host.version).toBe("18.14.1");
+    expect(host.version).toBe("18.16.0");
     expect(host.tabs.length).toBeGreaterThan(0);
     expect(Object.keys(host.schema).length).toBeGreaterThan(0);
 
