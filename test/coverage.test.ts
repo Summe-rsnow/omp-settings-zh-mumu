@@ -8,10 +8,10 @@ import { createFakeHost } from "./fixtures/fake-host";
 import { minimalLocale } from "./fixtures/minimal-locale";
 
 describe("coverage and drift reporting", () => {
-  test("the OMP 18.16.0 locale has complete P0 coverage", () => {
+  test("the OMP 18.18.6 locale has complete P0 coverage", () => {
     const report = buildCoverageReport(getHostMetadata(), zhCN);
 
-    expect(report.totalUiSettings).toBe(438);
+    expect(report.totalUiSettings).toBe(450);
     expect(report.translatedSettings).toBe(report.totalUiSettings);
     expect(report.completeSettings).toBe(report.totalUiSettings);
     expect(report.partialSettings).toBe(0);

@@ -1,7 +1,7 @@
 # omp-settings-zh 技术设计
 
 - 状态：实现前设计
-- 目标基线：OMP 18.0.4
+- 目标基线：OMP 18.18.6
 - 核心约束：不分叉、不重写设置面板、不修改配置语义
 
 ## 1. 结论
@@ -12,7 +12,7 @@
 
 ## 2. 已核验的上游事实
 
-OMP 18.0.4 当前实现具备以下条件：
+OMP 18.18.6 当前实现具备以下条件：
 
 1. 设置由 `packages/coding-agent/src/config/settings-schema.ts` 中的 `SETTINGS_SCHEMA` 统一定义。
 2. 设置 UI 元数据包含 `label`、`description`、`warning`、`group` 和静态 `options`。

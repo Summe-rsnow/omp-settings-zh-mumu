@@ -2,6 +2,31 @@
 
 本项目遵循 [Semantic Versioning](https://semver.org/)。
 
+## [0.4.0] - 2026-11-10
+
+- 适配 OMP 18.18.6 设置体系（从 18.16.0 升级至 18.18.6）：
+  - 翻译全量覆盖：覆盖率由 438 项扩增至 450 项完整 UI 设置（450/450，100% P0 覆盖），0 部分，0 未翻译，123 项无 UI 配置 0 异常，上游 Schema 漂移完全归零。
+  - 新增 12 项设置项汉化：
+    - 外观与展示：彩色 Markdown (`tui.colorfulMarkdown`)、Spinner 间隔 (`tui.spinnerInterval`)、最大帧率 (`tui.maxFps`)、动效总开关 (`tui.motion`)、Shell 可视化 (`display.shellVisualization`)
+    - 交互与更新：自动更新 (`update.auto`)、Chillax 关键词 (`magicKeywords.chillax`)
+    - 提供商：OpenAI Responses WebSockets (`providers.openaiResponsesWebsockets`)
+    - 任务与隔离：ovnfs 可执行文件 (`ovnfs.path`)、子代理工作线程 (`task.workerThreads`)
+    - 工具与扩展：扩展对话记录呈现器 (`extensionRenderers.transcriptPresenters`)、Spotlight 实验 (`spotlight.experiment.enabled`)
+  - 同步 11 项已有设置文案漂移：
+    - `tui.mouse`：对齐鼠标捕获阻止滚轮滚动、改用终端键盘回滚键的说明
+    - `display.shimmer`：补充「精简或关闭动效时停用」
+    - `display.smoothStreaming`：补充 Tern 自行逐字输出助手文本
+    - `textVerbosity`：默认标记由 medium 更正为 low
+    - `magicKeywords.enabled`：关键词列表补充 chillax
+    - `providers.openaiWebsockets`：标题改为 OpenAI Codex WebSockets，说明收敛为「仅针对 OpenAI Codex 模型」
+    - `mnemopi.dbPath`：补充开头 `~` 表示主目录
+    - `edit.mode`：补充 `none` 移除编辑工具并保留 bash
+    - `lsp.enabled`：对齐为语言服务器集成（lsp 工具、写入/编辑诊断、写入格式化）
+    - `isolation.backend`：收敛为「子代理隔离与 worktree 克隆后端」，auto 选项补充 ovnfs 检出语义
+    - `task.eager`：补充子代理保留模型自身策略
+  - 版本号与测试维护：正式升级版本号至 0.4.0，测试版本断言与设置总数（450）对齐 OMP 18.18.6，全部测试与自动化校验套件 100% 通过
+- 开发依赖：`@oh-my-pi/pi-coding-agent` devDependency 升级至 `18.18.6`
+
 ## [0.3.0] - 2026-11-03
 
 - 适配 OMP 18.16.0 设置体系（从 18.14.1 升级至 18.16.0）：

@@ -2,7 +2,7 @@ import type { LocalePack } from "./types";
 
 export const zhCN = {
   "locale": "zh-CN",
-  "sourceOmpVersion": "18.16.0",
+  "sourceOmpVersion": "18.18.6",
   "tabs": {
     "appearance": "外观",
     "model": "模型",
@@ -919,9 +919,9 @@ export const zhCN = {
       "description": "使用 OSC 8 超链接包装路径和 URL，以便通过终端原生方式点击打开（auto：检测支持情况；off：从不启用；always：无条件启用）"
     },
     "tui.mouse": {
-      "sourceHash": "6d1ddee15769b420ca1d7ef313cf7a895922d7c5fbae52f4943aa6ed450e5ac1",
+      "sourceHash": "11b76da0b77e9f76042964ffb583b7b9159c00fdc27e31472ebd02193711d48f",
       "label": "鼠标点击聚焦",
-      "description": "在主会话中捕获鼠标点击，点击即可聚焦活动子代理卡片和 HUD 行并显示悬停高亮，点击扩展链接可直达对应扩展（也可通过链接提示键免鼠标选择）；开启后原生文本选中需按住 Shift+拖动，滚轮滚动需按住 Shift+滚轮"
+      "description": "在主会话中捕获鼠标点击，使活动子代理卡片和 HUD 行在点击时聚焦，目标显示悬停高亮，点击扩展拥有的链接可直达对应扩展（也可通过链接提示键免鼠标选择）。开启后原生文本选中需按住 Shift+拖动，且鼠标捕获会阻止滚轮滚动——终端改为把滚轮刻度上报给 omp——因此请使用终端的键盘回滚键滚动，或关闭此设置"
     },
     "tui.tight": {
       "sourceHash": "babebba5a60583ce069f2446fa1db9b4ae0d360bbdba1fa24939eede65c85e94",
@@ -929,9 +929,9 @@ export const zhCN = {
       "description": "移除终端输出左右两侧各 1 个字符的水平内边距"
     },
     "display.shimmer": {
-      "sourceHash": "2bb3bf5c3781a7e813164b5287f72b730102335c4f1ca7ba1ed4dcfe3f43a415",
+      "sourceHash": "afa8a45e78e5d1ec3f9ef7a37ed03b6fe029df9d9eddd4eb14726754a8381b13",
       "label": "流光动画",
-      "description": "工作中或加载中消息的动画样式",
+      "description": "工作中或加载中消息的动画样式；在动效为精简或关闭时停用",
       "options": {
         "classic": {
           "label": "经典",
@@ -967,9 +967,9 @@ export const zhCN = {
       }
     },
     "display.smoothStreaming": {
-      "sourceHash": "486ee99f103176ae2d9462988dea8a0f9438a6ef043971617093152706261425",
+      "sourceHash": "90833099c0042b83c466ca2213c63804c82d64b7053b3e0e212ab1955dea6ce8",
       "label": "平滑流式显示",
-      "description": "在数据块到达时，平滑显示助手文本和流式工具输入"
+      "description": "在数据块到达时，平滑显示助手文本和流式工具输入（Tern 会自行逐字打出助手文本）"
     },
     "display.hideToolActivity": {
       "sourceHash": "02283e2dd6b172dfe14a309ab19809155f6a8bd2a37b237692cbb68bd5ff0226",
@@ -1325,17 +1325,17 @@ export const zhCN = {
       }
     },
     "textVerbosity": {
-      "sourceHash": "7570c318bc48dd3c9727d2ae937d4d99f36a809c77f858440228f64b5273b3d8",
+      "sourceHash": "1606c12e28b2d49f6166843934ef5f1296e4f99192169fd06264affdb65f9ab4",
       "label": "文本详略程度",
       "description": "OpenAI Responses 和 Codex 的回复详略程度（low、medium 或 high）",
       "options": {
         "low": {
           "label": "低",
-          "description": "倾向简洁回复"
+          "description": "倾向简洁回复（默认）"
         },
         "medium": {
           "label": "中",
-          "description": "兼顾简洁与细节（默认）"
+          "description": "兼顾简洁与细节"
         },
         "high": {
           "label": "高",
@@ -1852,9 +1852,9 @@ export const zhCN = {
       }
     },
     "magicKeywords.enabled": {
-      "sourceHash": "562eae89d3d791c42d050ed4dea84bd066df129f1601b6694b67d16621afffac",
+      "sourceHash": "9ed7e192c3166d5aa5e9f82be279b080d832167b536ee9dd525987c6adade592",
       "label": "魔法关键词",
-      "description": "为单独使用的 ultrathink、orchestrate、workflowz、jevify 关键词启用隐藏提示"
+      "description": "为单独使用的 ultrathink、chillax、orchestrate、workflowz、jevify 关键词启用隐藏提示"
     },
     "magicKeywords.jevify": {
       "sourceHash": "13d2e210aba3b4ad7c58860a5092298775bfeb1090b0c63cf7df540e70db332a",
@@ -2486,9 +2486,9 @@ export const zhCN = {
       "description": "开启时，在停止时自动运行一轮私有捕获（会额外使用 token）；关闭时，仅保留常驻的自动学习指导"
     },
     "mnemopi.dbPath": {
-      "sourceHash": "6edb10f1c642d197994b758ee93ac1ac5b13e48a8d3dd1222921a5371dc32122",
+      "sourceHash": "372f9b3fad7d4aa4d11c3a190e84bacebfcae831177cefd09df24859ff01d600",
       "label": "Mnemopi DB 路径",
-      "description": "可选的 SQLite DB 路径，默认为 Agent 记忆目录"
+      "description": "可选的 SQLite DB 路径；开头的 ~ 表示主目录。默认为 Agent 记忆目录"
     },
     "mnemopi.bank": {
       "sourceHash": "1512e129c6007ed86b1f07ed6fa676303a57f7b09ff6bb48257a9c3b119298c7",
@@ -2772,9 +2772,9 @@ export const zhCN = {
       }
     },
     "edit.mode": {
-      "sourceHash": "b54fadd48af314434e9fcae0e86d0c8a1acbe8ed71679625ee1b112d2a1e6579",
+      "sourceHash": "acef7da5b47435747c6584240f53b74b849b9a2d1e7ce8989d7a1a265510276b",
       "label": "编辑模式",
-      "description": "选择编辑工具变体（replace、patch、hashline 或 apply_patch）"
+      "description": "选择编辑工具变体（replace、patch、hashline 或 apply_patch）；none 会移除编辑工具并保持 bash 启用"
     },
     "edit.fuzzyMatch": {
       "sourceHash": "0dee6242ca065b3e60e27f1bff9ccf59a4e8fdb61ea4b3f9f3394124d118bd1a",
@@ -2907,9 +2907,9 @@ export const zhCN = {
       "description": "在对话记录中行内显示读取工具结果，而非摘要行"
     },
     "lsp.enabled": {
-      "sourceHash": "c01d690f5c32a9df560e180ced8e7f2f11f658097097e251a2576a8ada2f28e6",
+      "sourceHash": "1fe68995927bf7240990df61e826e24215df1f1d1e554e4fb5610f020cc89bb5",
       "label": "LSP",
-      "description": "启用 lsp 工具以提供代码智能功能（定义、引用、诊断、重命名）"
+      "description": "语言服务器集成：lsp 工具、写入/编辑时诊断、写入时格式化（--no-lsp 可在本次运行中禁用）"
     },
     "lsp.lazy": {
       "sourceHash": "5e5740595487c2c62b0154cba12ccd13ef68858bf8069cd509f21fc72a9eb419",
@@ -3518,13 +3518,13 @@ export const zhCN = {
       "description": "允许通过 isolated: true 进行单任务隔离运行；未指定的任务将在共享检出目录中运行"
     },
     "isolation.backend": {
-      "sourceHash": "a72b13a07a5e5f80c984f1d49464f393abad0fc62bee9bef516e11b314ab1003",
+      "sourceHash": "0bd12fc8c9293d74a71f05feb511e2387cb1267f37a967478f2dad76a373f90f",
       "label": "隔离后端",
-      "description": "子代理工作区隔离后端：控制子代理在独立目录执行任务时底层文件系统的克隆机制；支持写时复制（CoW，如 APFS/btrfs/Reflink）实现秒级克隆并共享已有的依赖（node_modules），无法克隆时自动回退为传统递归复制",
+      "description": "子代理隔离与 worktree 克隆所使用的后端",
       "options": {
         "auto": {
           "label": "自动",
-          "description": "由 PAL 选择最佳可用后端"
+          "description": "找到 ovnfs 时，隔离子代理使用 ovnfs 检出；否则（以及 worktree）由 PAL 选择最合适的可用后端"
         },
         "apfs": {
           "label": "APFS",
@@ -3611,9 +3611,9 @@ export const zhCN = {
       "description": "Agent 管理的 worktree 基础目录——任务隔离副本、`github` PR 检出和 `omp worktree` 清理均位于此处；未设置时使用 ~/.omp/wt；必须是绝对路径或以 ~ 开头的相对路径，其他相对路径会被忽略；环境变量 OMP_WORKTREE_DIR 的优先级更高"
     },
     "task.eager": {
-      "sourceHash": "bb8fdeff73b831ee5a5ed25b4aa5696b2565a6c6c7a27ac6c5a196e1c2b367c7",
+      "sourceHash": "aa3f2e90e4ccba792ae4e7124599a4dc5d540b122684ea7a7f2ba1c50ec533da",
       "label": "优先委派任务",
-      "description": "推动将工作委派给子代理的倾向强度",
+      "description": "推动主 Agent 委派工作的强度；子代理保留模型自身的策略",
       "options": {
         "default": {
           "label": "默认",
@@ -4304,13 +4304,13 @@ export const zhCN = {
       }
     },
     "providers.openaiWebsockets": {
-      "sourceHash": "e02fcda6209fff1f11571fa354f6fe499e276aad74e20c937fa4386ca7ac53dc",
-      "label": "OpenAI WebSockets",
-      "description": "OpenAI Codex 模型的 WebSocket 策略（自动使用模型默认设置，开启时强制使用，关闭时禁用）",
+      "sourceHash": "bb0c9ae976df3bf703f73027886503b0fe0ea7b80d042f21dda07180129780e8",
+      "label": "OpenAI Codex WebSockets",
+      "description": "仅针对 OpenAI Codex 模型的 WebSocket 策略",
       "options": {
         "auto": {
           "label": "自动",
-          "description": "使用模型或提供商的默认 WebSocket 行为"
+          "description": "使用 Codex 模型默认设置"
         },
         "off": {
           "label": "关闭",
@@ -5173,6 +5173,133 @@ export const zhCN = {
       "sourceHash": "f96bed6b9133fe121a1bb775dfe1f12e1121590479f8b7f9020e2a893fc337fe",
       "label": "扩展答复渲染器",
       "description": "允许扩展自定义助手答复的渲染方式、就地重绘答复并接收其自身链接的点击事件；会话记录、导出和模型上下文保持答复原始内容不变"
+    },
+    "tui.colorfulMarkdown": {
+      "sourceHash": "439637afe8869b8e75951bce041143133a4b81129866c4953c7e178c6d2f9708",
+      "label": "彩色 Markdown",
+      "description": "按级别为标题着色，并使用主题的 ANSI 调色板为粗体、斜体、行内代码和表头着色；关闭后标题统一使用一种颜色，粗体与斜体保持朴素"
+    },
+    "tui.spinnerInterval": {
+      "sourceHash": "2c62c7ab424c003d2339c00253033548199f694ba9e5dcf25d85fd6bfa772a16",
+      "label": "Spinner 间隔（ms）",
+      "description": "每个 Spinner 帧之间的毫秒间隔，包含终端标题；0 显示静态字形。未设置时跟随动效设置",
+      "options": {
+        "0": {
+          "label": "静态",
+          "description": "无动画"
+        },
+        "80": {
+          "label": "80 ms",
+          "description": "12.5 帧/秒"
+        },
+        "250": {
+          "label": "250 ms",
+          "description": "4 帧/秒"
+        },
+        "1000": {
+          "label": "1 s",
+          "description": "1 帧/秒"
+        }
+      }
+    },
+    "tui.maxFps": {
+      "sourceHash": "d13f2fd28ff76bc373c90fdae629b21b116391afd732250792b579ed88c3ed9d",
+      "label": "最大帧率",
+      "description": "TUI 重绘频率上限，包含流式文本。按键回显保持 30 fps，确保输入所在窗格保持响应",
+      "options": {
+        "30": {
+          "label": "30 fps",
+          "description": "默认"
+        },
+        "15": {
+          "label": "15 fps"
+        },
+        "4": {
+          "label": "4 fps",
+          "description": "安静模式，适合多窗格"
+        },
+        "1": {
+          "label": "1 fps",
+          "description": "最小值"
+        }
+      }
+    },
+    "tui.motion": {
+      "sourceHash": "5e893d289db95e13d8dd55a40ca0dcf134eac637a514df83bff0b28cb7441211",
+      "label": "动效",
+      "description": "统一控制加载动画、流光动画以及装饰性闪烁/淡入淡出。流式文本不受影响（见最大帧率）。手动设置的 Spinner 间隔仍然优先",
+      "options": {
+        "full": {
+          "label": "完整",
+          "description": "所有动画按各自设置运行（默认）"
+        },
+        "reduced": {
+          "label": "精简",
+          "description": "加载动画 250 ms，无流光，无闪烁/淡入淡出"
+        },
+        "none": {
+          "label": "关闭",
+          "description": "加载动画与标题保持静态，无流光，无闪烁/淡入淡出"
+        }
+      }
+    },
+    "display.shellVisualization": {
+      "sourceHash": "fe1f40ffa066586d5376250675d487f0a8b34505b7ebdd03a2ca7bf58f55a156",
+      "label": "Shell 可视化",
+      "description": "将 bash 命令以交互式执行可视化呈现，而非纯文本 Shell 命令"
+    },
+    "update.auto": {
+      "sourceHash": "1e53034e217130beea620c1938cd41a2d37e8a00888f08e413c06497311d8e0b",
+      "label": "自动更新",
+      "description": "启动时在后台安装 omp 更新；下次启动运行新版本"
+    },
+    "magicKeywords.chillax": {
+      "sourceHash": "95310b43da854cea70552c12220bda378ff0ec7035990fc54db12329b1e8929f",
+      "label": "Chillax 关键词",
+      "description": "允许单独使用的 chillax 将思考降到模型的最低强度（支持逐消息设置强度的模型，即使在一轮中途），并附加其隐藏提示"
+    },
+    "providers.openaiResponsesWebsockets": {
+      "sourceHash": "dec0e0f3ec568daa9fa16b88a5ca5d4614c3aaeb00dd93f11047efa371e8a954",
+      "label": "OpenAI Responses WebSockets",
+      "description": "对目录支持的标准 Responses 模型启用；模型或请求为 false 时禁用"
+    },
+    "ovnfs.path": {
+      "sourceHash": "ea3ca81909cbd39beabe1a1b4f055f15a7c7ed1fa1e8a099fb7ed17189fba631",
+      "label": "ovnfs 可执行文件",
+      "description": "ovnfs 可执行文件；未设置时在 PATH 中查找 `ovnfs`。找到后，ovnfs 检出（文件夹的写时复制视图，任意大小都能在约一秒内就绪）会服务每一次独立副本：系统提示词会告诉 Agent 打开检出而不是 git worktree 或副本，隔离子代理（在允许且 `isolation.backend` 为 auto 时）会在检出中运行而不是原生克隆"
+    },
+    "task.workerThreads": {
+      "sourceHash": "0a7c778920109fba9b1bbdbdf361023e40995774a64077f9a973aedf244a7ebc",
+      "label": "子代理工作线程",
+      "description": "子代理的最大工作线程数。最多 8 个并发子代理在主线程上运行；达到 9 个时加入一个工作线程，此后数量每翻一倍再加一个（18、36、72）。工作线程在其内没有存活的子代理一分钟后停止；0 表示所有子代理都留在主线程",
+      "options": {
+        "0": {
+          "label": "仅主线程"
+        },
+        "1": {
+          "label": "最多 1 个工作线程"
+        },
+        "2": {
+          "label": "最多 2 个工作线程"
+        },
+        "4": {
+          "label": "最多 4 个工作线程",
+          "description": "默认"
+        },
+        "8": {
+          "label": "最多 8 个工作线程"
+        }
+      }
+    },
+    "extensionRenderers.transcriptPresenters": {
+      "sourceHash": "7686b061705581ac688cde15289deeb9db4f1aef82adba55a18352b955026f1b",
+      "label": "扩展对话记录呈现器",
+      "description": "允许扩展将工具调用等对话记录块绘制为完整、单行紧凑或隐藏形式；会话、导出和模型上下文保持不变"
+    },
+    "spotlight.experiment.enabled": {
+      "sourceHash": "c4e3f8a94ec283e177ea6457a9590e36a8cdabf1513276bbc5d368c577fd07ce",
+      "label": "Spotlight 实验",
+      "description": "使用 Stencil Spotlight 塑形工具输出并对 find 结果排序，并将每个塑形后的结果记录到会话"
     }
   },
   "configOnly": {
